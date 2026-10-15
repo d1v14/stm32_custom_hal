@@ -10,7 +10,7 @@
 
 #include <cstdint>
 
-enum class GPIO{
+enum class GPIOPort{
 	A = 0x0000,
 	B = 0x4000,
 	C = 0x8000,
@@ -19,6 +19,21 @@ enum class GPIO{
 	H = 0x1C00,
 };
 
+
+class GPIO{
+public:
+	GPIO() = delete;
+	~GPIO() = delete;
+
+public:
+	std::uint32_t get_gpio_port_address(GPIOPort port){
+		return GPIO_base_address + port;
+	}
+
+
+private:
+	static constexpr inline uint32_t GPIO_base_address = 0x4002'0000;
+};
 
 
 #endif /* INC_GPIO_HPP_ */
