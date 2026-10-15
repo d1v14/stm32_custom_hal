@@ -23,7 +23,7 @@ public:
 
 private:
 	static constexpr inline uint32_t RCC_AHB1ENR = 0x30;
-
+//
 };
 
 
