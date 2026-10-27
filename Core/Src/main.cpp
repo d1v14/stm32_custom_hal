@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f4xx_hal_conf.h"
+#include "RCC.hpp"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -75,14 +76,16 @@ int main(void)
 
   /* USER CODE BEGIN Init */
   GPIO_InitTypeDef GPIO_InitStruct = {0};
-  __HAL_RCC_GPIOC_CLK_ENABLE(); // Включение тактирования порта C
+//  __HAL_RCC_GPIOC_CLK_ENABLE(); // Включение тактирования порта C
 
+  RCCController::enable_gpio(RCCController::GpioPort::C);
   /* Настройка параметров пина PC13 */
   GPIO_InitStruct.Pin = GPIO_PIN_13;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
